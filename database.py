@@ -11,10 +11,10 @@ mycursor = db.cursor()
 
 #mycursor.execute("create database pythonfun")
 
-def insertValue(name,*ing,time):
+def insertValue(name,*ing,time,diet):
     #print(name)
     ingredients = ', '.join(ing)
-    mycursor.execute("insert into recipes(name, ingredient_list,cooktime) values(%s,%s,%s)",(name, ingredients, time))
+    mycursor.execute("insert into recipes(name, ingredient_list,cooktime,diet) values(%s,%s,%s,%s)",(name, ingredients, time,diet))
     db.commit()
 
 def givenames():
