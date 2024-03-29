@@ -1,34 +1,49 @@
 from database import *
-
-def submit_items():
-    selectedname = listOfFoodNames.get(listOfFoodNames.curselection())
-    infoList = giveInfo(selectedname)
-
-    for item in infoList:
-        for element in item:
-            print(element)
-    #print(infoList)
-
-
-
 import tkinter as tk
 
-searchframe = tk.Tk()
-searchframe.geometry("420x420")
 
-listOfFoodNames = tk.Listbox(searchframe)
+class searchPage:
+    def launchSearch():
+        searchPage()
 
-nameList = givenames()
+    def __init__(self):
 
-for i in nameList:
-    j = 1
-    listOfFoodNames.insert(j,i)
-    j+=1
+        self.searchframe = tk.Tk()
+        self.searchframe.geometry("420x420")
+
+        self.listOfFoodNames = tk.Listbox(self.searchframe)
+
+        self.nameList = givenames()
+
+        for i in self.nameList:
+            j = 1
+            self.listOfFoodNames.insert(j,i)
+            j+=1
 
 
-listOfFoodNames.pack()
+        self.listOfFoodNames.pack()
 
-submitButton = tk.Button(searchframe,text="search recipe",command=submit_items)
-submitButton.pack()
+        self.submitButton = tk.Button(self.searchframe,text="search recipe",command=self.submit_items)
+        self.submitButton.pack()
 
-searchframe.mainloop()
+        self.searchframe.mainloop()
+
+
+
+    def submit_items(self):
+        selectedname = self.listOfFoodNames.get(self.listOfFoodNames.curselection())
+        infoList = giveInfo(selectedname)
+
+        for item in infoList:
+            for element in item:
+                print(element)
+        #print(infoList)
+                
+
+
+if __name__ == "__main__":
+    searchPage.launchSearch()
+
+
+
+    

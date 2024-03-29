@@ -1,12 +1,18 @@
 #name #ingredients #process
 
 from database import *
-
 from tkinter import messagebox
+import tkinter as tk
 
+
+
+
+def LaunchAdmin():
+    #adminpage = tk.Toplevel()
+    #adminpage.title("Admin settings")
+    print("launch admin function accessed")
 
 def getInfo():
-
     try:
         name = nameInput.get('1.0', 'end-1c')
         print(name)
@@ -27,25 +33,17 @@ def getInfo():
         insertValue(name,*dummyList,time=cooktime,diet=dietSelected)
     
     except Exception as e:
-         messagebox.showerror("Error", "You have entered some invalid info. Please check and try again")
+        messagebox.showerror("Error", "You have entered some invalid info. Please check and try again")
 
-
-
-
-import tkinter as tk
 
 adminpage = tk.Tk()
 adminpage.geometry("430x430")
-
+ 
 nameText = tk.Label(adminpage, text="Enter name")
 nameText.pack()
 
 nameInput = tk.Text(adminpage,width="30",height="2")
 nameInput.pack()
-
-
-
-
 
 listOfIngredients = tk.Listbox(adminpage,selectmode="multiple")
 pseudoIngredients = ['bread', 'rice', 'chicken','eggs', 'garlic','turmeric','coriander']
@@ -76,4 +74,3 @@ diet2.pack()
 submitButton = tk.Button(adminpage,text="submit", command=getInfo)
 submitButton.pack()
 adminpage.mainloop()
-
