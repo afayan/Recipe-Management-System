@@ -12,7 +12,6 @@ class Admin:
 
         self.insertDish = tk.Frame(self.adminpage)
         self.insertIngreds = tk.Frame(self.adminpage)
-
         
         self.nameText = tk.Label(self.insertDish, text="Enter name")
         self.nameText.pack()

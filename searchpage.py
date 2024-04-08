@@ -12,10 +12,13 @@ class searchPage:
         self.searchframe = tk.Tk()
         #self.searchByIngredients = tk.Tk()
         self.searchframe.geometry("1320x500")
+        #self.searchframe.configure(bg="#ffd700")
+
+
         self.myNotebook = ttk.Notebook(self.searchframe)
 
-        self.searchByNameTab = tk.Frame(self.myNotebook)
-        self.searchByIngredientTab = tk.Frame(self.myNotebook)
+        self.searchByNameTab = tk.Frame(self.myNotebook,bg="#ffd700")
+        self.searchByIngredientTab = tk.Frame(self.myNotebook,bg="#ffd700")
 
         #code to be repeated in other tab
         self.listOfFoodNames = tk.Listbox(self.searchByNameTab)
@@ -33,7 +36,7 @@ class searchPage:
         self.submitButton.pack()
 
 
-        self.infoLabel = tk.Label(self.searchByNameTab, text="search items")
+        self.infoLabel = tk.Label(self.searchByNameTab, text="select items")
         self.infoLabel.pack()
 
         #repeated code ends here
@@ -42,6 +45,8 @@ class searchPage:
         #self.pseudoIngredients = ['eggs', 'butter','corn','ketchup']
         self.selectIngred = tk.Label(self.searchByIngredientTab, text="Choose ingredients")
         self.selectIngred.pack()
+
+
 
 
         for i in range(0,len(self.pseudoIngredients)):
@@ -75,7 +80,7 @@ class searchPage:
 
     def submit_items(self):
         selectedname = self.listOfFoodNames.get(self.listOfFoodNames.curselection())
-
+        #checking all the selected names
         print(type(selectedname))
 
         infoList = giveInfo(selectedname)
@@ -87,7 +92,8 @@ class searchPage:
 
         self.displayItems(infoList)
 
-    def displayItems(self, infoList):
+    def displayItems(self, infoList): #function to display given list in gui
+
         self.infoLabel.config(text=infoList)
 
     def searchByIngreds(self):
