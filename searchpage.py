@@ -94,7 +94,21 @@ class searchPage:
 
     def displayItems(self, infoList): #function to display given list in gui
 
-        self.infoLabel.config(text=infoList)
+        n_diet = infoList['diet']
+        print("diet is ",n_diet)
+
+        n_cooktime = infoList['cooktime']
+
+        n_process = infoList['process'][0]
+
+        n_ings = infoList['ingredients']
+
+        n_name = infoList['name']
+
+        textm = n_name + " recipe:\n " + "ingredients required:\n" + str(n_ings) +"\nProcess: \n" +n_process + "\ntotal cooktime\n" + str(n_cooktime)
+
+        print(textm)
+        self.infoLabel.config(text=textm)
 
     def searchByIngreds(self):
 

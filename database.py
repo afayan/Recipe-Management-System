@@ -13,10 +13,10 @@ mycursor = db.cursor(buffered=True)
 
 #mycursor.execute("create database pythonfun")
 
-def insertValue(name,ing,time,diet):
+def insertValue(name,ing,time,diet, process):
     #print(name)
     ingredients = ', '.join(ing)
-    mycursor.execute("insert into recipes(name, ingredient_list,cooktime,diet) values(%s,%s,%s,%s)",(name, ingredients, time,diet))
+    mycursor.execute("insert into recipes(name, ingredient_list,cooktime,diet,process) values(%s,%s,%s,%s,%s)",(name, ingredients, time,diet, process))
     db.commit()
 
 def givenames():
@@ -60,6 +60,11 @@ def giveInfo(nameOfFoodTuple):
         info['cooktime'] = "Information not available"
 
     print(cooktime_result)
+
+    mycursor.execute("SELECT process FROM recipes WHERE name = %s", (nameOfFood,))
+    process_result = mycursor.fetchone()
+    info["process"] = process_result
+    print(info["process"])
 
     mycursor.execute("SELECT ingredient_list FROM recipes WHERE name = %s", (nameOfFood,))
     ingredient_results = mycursor.fetchall()

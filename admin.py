@@ -43,13 +43,26 @@ class Admin:
 
 
         self.diet_var = tk.StringVar()
-        self.diet_var.set(None) 
+        #self.diet_var.set(None) 
 
         self.diet1 = tk.Radiobutton(self.insertDish, text="Veg", variable=self.diet_var, value="Veg")
         self.diet2 = tk.Radiobutton(self.insertDish, text="Non-Veg", variable=self.diet_var, value="Non-Veg")
 
         self.diet1.pack()
         self.diet2.pack()
+
+
+        #adding process input
+        self.addProc = tk.Label(self.insertDish, text="add process")
+        self.addProc.pack()
+
+        self.ProcInput = tk.Text(self.insertDish,width="30",height="2")
+        self.ProcInput.pack()
+
+
+
+        #ends here
+
 
         self.submitButton = tk.Button(self.insertDish,text="submit", command=self.getInfo)
         self.submitButton.pack()
@@ -88,12 +101,20 @@ class Admin:
             cooktime = int(self.cooktimeinput.get()) 
             print(cooktime)
 
+      
+
             dietSelected = self.diet_var.get()
 
             print(dietSelected)
 
+            processInput = self.ProcInput.get('1.0', 'end-1c')
+            print(processInput)
+
             for item in dummyList:
-                insertValue(name, item, time=cooktime, diet=dietSelected)
+                insertValue(name, item, time=cooktime, diet=dietSelected, process=processInput)
+
+
+         
         
         #except Exception as e:
             #messagebox.showerror("Error", "You have entered some invalid info. Please check and try again")
